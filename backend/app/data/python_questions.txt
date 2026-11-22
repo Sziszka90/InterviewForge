@@ -1,0 +1,620 @@
+Phase 1 – Python Fundamentals
+1. Variables & Data Types
+1. What is the difference between dynamic typing and static typing?
+2. Is Python strongly typed or weakly typed?
+3. How does variable assignment work in Python?
+4. What is the difference between type() and isinstance()?
+5. What is the difference between is and ==?
+6. Why is bool a subclass of int?
+7. How does Python handle integers larger than 64 bits?
+8. Why does 0.1 + 0.2 == 0.3 evaluate to False?
+9. What is None, and why should you use is None?
+10. Are Python type annotations enforced at runtime?
+2. Collections
+1. What is the difference between list, tuple, set, and dict?
+2. What makes an object hashable?
+3. Why can't a list be used as a dictionary key?
+4. Can a tuple contain mutable objects?
+5. How does Python dictionary lookup work internally?
+6. What happens when two dictionary keys have identical hashes?
+7. What happens when a dictionary comprehension produces duplicate keys?
+8. What is the difference between shallow copy and deep copy?
+9. Why is set membership generally faster than list membership?
+10. What are the time complexities of common list and dictionary operations?
+3. Operators & Control Flow
+1. What is the difference between identity and equality?
+2. What values are considered falsy in Python?
+3. How does Python determine the truthiness of a custom object?
+4. Why don't and and or always return boolean values?
+5. How does short-circuit evaluation work?
+6. When does the else clause of a for or while loop execute?
+7. How does structural pattern matching with match/case work?
+8. What is the difference between capture patterns and value patterns?
+9. What does the walrus operator := do?
+10. What is the difference between enumerate(), zip(), and range()?
+4. Functions
+1. How are arguments passed to Python functions?
+2. What does call by sharing mean?
+3. What is the difference between mutating an argument and rebinding a parameter?
+4. Why are mutable default arguments potentially dangerous?
+5. When are default argument expressions evaluated?
+6. What is the difference between *args and **kwargs?
+7. What are positional-only and keyword-only parameters?
+8. What is the LEGB rule, and how do global and nonlocal work?
+9. What are closures, and what is the late-binding problem?
+10. What does it mean that Python functions are first-class objects?
+5. Comprehensions
+1. What is a list comprehension?
+2. What is the difference between a comprehension filter and conditional expression?
+3. How do nested comprehensions work?
+4. What is the Python equivalent of LINQ SelectMany()?
+5. What is the difference between list, set, and dictionary comprehensions?
+6. What happens when dictionary comprehensions produce duplicate keys?
+7. What is the difference between a list comprehension and a generator expression?
+8. Do comprehensions have their own scope?
+9. How do any() and all() benefit from lazy evaluation?
+10. When should you avoid comprehensions in production code?
+6. Object-Oriented Programming
+1. What is self, and how does method binding work?
+2. What is the difference between class attributes and instance attributes?
+3. Why are mutable class attributes potentially dangerous?
+4. What is the difference between @staticmethod and @classmethod?
+5. How does Python support multiple inheritance?
+6. What is the Method Resolution Order (MRO), and how does C3 linearization work?
+7. How does super() behave with multiple inheritance?
+8. What are Python's encapsulation conventions and name mangling?
+9. What are dataclasses, and what do frozen=True and default_factory do?
+10. What is the difference between duck typing, Protocols, and abstract base classes?
+7. Python Data Model
+1. What are dunder methods, and how does Python invoke them?
+2. What is the difference between __new__() and __init__()?
+3. What is the difference between __str__() and __repr__()?
+4. How does Python implement operator overloading?
+5. What happens if you override __eq__() without defining __hash__()?
+6. What is NotImplemented, and how does it differ from NotImplementedError?
+7. What is the difference between __getattr__() and __getattribute__()?
+8. What is the descriptor protocol?
+9. How do __call__(), __bool__(), and __len__() affect object behavior?
+10. How does Python resolve instance attributes and special methods?
+8. Iterators & Generators
+1. What is the difference between an iterable and an iterator?
+2. How do __iter__() and __next__() work?
+3. How does a Python for loop work internally?
+4. What is StopIteration, and how is it handled?
+5. What is the difference between yield and return?
+6. How does generator execution and suspension work?
+7. What is the difference between yield and yield from?
+8. How do send(), throw(), and close() work?
+9. What are generator lifecycle states, and why can a generator become exhausted?
+10. What is the difference between synchronous and asynchronous generators?
+9. Decorators & Closures
+1. What is a decorator, and how does it work internally?
+2. What is the relationship between decorators and closures?
+3. When is a decorator applied versus when its wrapper executes?
+4. Why do wrappers commonly use *args and **kwargs?
+5. What does functools.wraps() do?
+6. How do you implement a parameterized decorator?
+7. In what order are multiple decorators applied and executed?
+8. How do class-based decorators use __call__()?
+9. How do you write a decorator that correctly supports async functions?
+10. How would you implement production-ready logging, caching, or retry decorators?
+10. Exception Handling
+1. How do try, except, else, and finally interact?
+2. What happens if a function returns inside a finally block?
+3. What is the difference between Exception and BaseException?
+4. How do you create and use custom exceptions?
+5. What is the difference between raise, bare raise, and raise from?
+6. How do __cause__ and __context__ work?
+7. What are ExceptionGroup and except*?
+8. How do context managers handle exceptions?
+9. When should an exception be translated, retried, logged, or propagated?
+10. How would you design exception handling for a production financial API?
+11. Modules & Packages
+1. What is the difference between a module and a package?
+2. What happens internally when Python imports a module?
+3. What is sys.modules, and how does module caching work?
+4. What is __name__ == "__main__" used for?
+5. What is the purpose of __init__.py?
+6. What are namespace packages?
+7. What is the difference between absolute and relative imports?
+8. What does python -m do?
+9. How does Python resolve imports using sys.path?
+10. What causes circular imports, and how would you resolve them?
+12. Memory Management
+1. How does CPython manage object memory?
+2. What is reference counting?
+3. Why does CPython also need cyclic garbage collection?
+4. What happens when an object's reference count reaches zero?
+5. What does del actually do?
+6. What is the difference between assignment, shallow copy, and deep copy?
+7. What are weak references, and when are they useful?
+8. Why shouldn't you rely on __del__() for resource cleanup?
+9. What is __slots__, and how can it reduce memory usage?
+10. How would you investigate a memory leak in a long-running Python service?
+
+Phase 2 – Advanced Python
+13. Advanced Typing, Generics & Protocols
+1. What is the difference between Any and object?
+2. What is TypeVar, and how do Python generics work?
+3. What is the difference between bounded and constrained type variables?
+4. How does the Python 3.12+ generic type parameter syntax work?
+5. What is the difference between structural and nominal typing?
+6. How do Protocol and ABC differ?
+7. What is TypedDict, and how does it differ from Pydantic?
+8. What are Callable and ParamSpec used for?
+9. What are covariance, contravariance, and invariance?
+10. What are Self, Literal, TypeGuard, TypeIs, and @overload used for?
+14. Context Managers & Descriptors
+1. What is the context manager protocol?
+2. How do __enter__() and __exit__() work?
+3. When is __exit__() not called?
+4. How can context managers suppress exceptions?
+5. How does contextlib.contextmanager use generators?
+6. What is the difference between with and async with?
+7. What are ExitStack and AsyncExitStack?
+8. What is a descriptor, and what do __get__, __set__, and __delete__ do?
+9. What is the difference between data and non-data descriptors?
+10. How do descriptors enable properties, bound methods, and ORM attribute mapping?
+15. Python Standard Library
+1. What is the difference between dict, defaultdict, and Counter?
+2. When should you use collections.deque instead of a list?
+3. How do itertools.chain(), islice(), and batched() work?
+4. How does itertools.groupby() differ from SQL GROUP BY?
+5. How does functools.lru_cache() work, and what are its limitations?
+6. What is the difference between @overload and @singledispatch?
+7. How does pathlib improve filesystem operations?
+8. What is the difference between naive and timezone-aware datetimes?
+9. How should you configure logging in a production Python application?
+10. Why should financial applications use Decimal, and how should it be serialized?
+16. Python Internals – CPython & Bytecode
+1. What happens internally when Python executes a .py file?
+2. Does Python compile source code before executing it?
+3. What is Python bytecode?
+4. What are .pyc files, and what is __pycache__?
+5. What is the Python Virtual Machine?
+6. What are code objects and execution frames?
+7. How do local and global variable lookups work at the bytecode level?
+8. What does the dis module do?
+9. What are Python's interpreter-level performance limitations?
+10. What is the difference between CPython, PyPy, and other Python implementations?
+
+Phase 3 – Async & Concurrency
+17. Asyncio Fundamentals
+1. What is asynchronous programming in Python?
+2. What is the difference between concurrency and parallelism?
+3. What is a coroutine, and how does it differ from a regular function?
+4. What happens when you call an async def function without awaiting it?
+5. What is an event loop, and how does it schedule coroutines?
+6. What does await actually do?
+7. What is the difference between asyncio.run() and await?
+8. What happens when you call time.sleep() inside an async function?
+9. What is the difference between CPU-bound and I/O-bound operations?
+10. How does Python's async/await model compare with C#'s async/await?
+18. Advanced Asyncio
+1. What is the difference between a coroutine object and an asyncio.Task?
+2. What does asyncio.create_task() do?
+3. What is the difference between asyncio.gather() and TaskGroup?
+4. How does exception propagation work with asyncio.gather()?
+5. How does TaskGroup manage task failures?
+6. How does task cancellation work in asyncio?
+7. What is asyncio.CancelledError, and why should you handle it carefully?
+8. How do asyncio.wait_for() and asyncio.timeout() work?
+9. What happens when an asyncio task raises an exception that nobody retrieves?
+10. How would you execute 10,000 HTTP requests while limiting concurrency and handling failures?
+19. Threading
+1. What is a thread, and how does Python's threading module work?
+2. What is the difference between threading and asyncio?
+3. What is a race condition?
+4. How can race conditions occur despite the GIL?
+5. What are Lock and RLock, and how do they differ?
+6. What are Semaphore, Event, and Condition?
+7. What is thread-local storage?
+8. How does ThreadPoolExecutor work?
+9. When would you use asyncio.to_thread()?
+10. How would you make a shared in-memory cache thread-safe?
+20. Multiprocessing
+1. What is multiprocessing, and when should you use it?
+2. How does multiprocessing differ from threading?
+3. Why is multiprocessing useful for CPU-bound workloads?
+4. What is the difference between fork, spawn, and forkserver?
+5. What is ProcessPoolExecutor?
+6. How do processes communicate using queues and pipes?
+7. What is the purpose of shared memory?
+8. What role does serialization or pickling play in multiprocessing?
+9. What are the performance costs of starting and communicating with processes?
+10. How would you parallelize CPU-intensive risk calculations across multiple CPU cores?
+21. Global Interpreter Lock (GIL)
+1. What is the Global Interpreter Lock?
+2. Why was the GIL introduced in CPython?
+3. How does the traditional GIL affect multithreaded CPU-bound Python code?
+4. Does the GIL prevent race conditions?
+5. How does the GIL affect I/O-bound operations?
+6. When can C extension modules release the GIL?
+7. What is free-threaded Python?
+8. What changes when Python runs without the GIL?
+9. What are the trade-offs between threading, multiprocessing, and free-threaded execution?
+10. How would you benchmark whether the GIL limits your application's performance?
+22. Advanced Async Patterns
+1. What is an async iterator?
+2. What is the difference between an async iterator and an async generator?
+3. How does async for work internally?
+4. What is an async context manager?
+5. How does asyncio.Queue work?
+6. What is backpressure, and how can you implement it in asyncio?
+7. How do you implement producer-consumer workflows?
+8. How do you limit concurrency using asyncio.Semaphore?
+9. How do you implement graceful shutdown of asynchronous workers?
+10. How would you design a reliable asynchronous event-processing pipeline?
+
+Phase 4 – FastAPI & Pydantic
+23. FastAPI Fundamentals & Routing
+1. What is FastAPI, and how does it differ from Flask and Django?
+2. What role do Starlette and Pydantic play in FastAPI?
+3. How do path parameters, query parameters, and request bodies work?
+4. How does FastAPI generate OpenAPI documentation?
+5. What is the difference between GET, POST, PUT, PATCH, and DELETE?
+6. How do you define response models and HTTP status codes?
+7. How do you organize endpoints using APIRouter?
+8. How do you implement pagination, filtering, and sorting?
+9. How do you handle API versioning?
+10. How would you design a maintainable REST API for a financial transaction service?
+24. Pydantic – Models, Validation & Serialization
+1. What is Pydantic, and how does it perform runtime validation?
+2. What is the difference between BaseModel and TypedDict?
+3. What changed between Pydantic v1 and v2?
+4. What is the difference between validation and serialization?
+5. How do field_validator and model_validator work?
+6. What is the difference between validation and serialization aliases?
+7. What are strict mode and type coercion?
+8. How do nested Pydantic models work?
+9. What are model_validate(), model_dump(), and model_dump_json()?
+10. How do you safely handle Decimal, datetime, enum, and optional fields in API models?
+25. FastAPI Dependency Injection & Lifespan
+1. How does FastAPI dependency injection work?
+2. What does Depends() do?
+3. How are dependencies resolved and cached within a request?
+4. How do nested dependencies work?
+5. How do you create dependencies using yield?
+6. How do you manage database sessions through dependencies?
+7. How do you override dependencies during testing?
+8. What is the difference between application-scoped and request-scoped resources?
+9. How does FastAPI lifespan management work?
+10. How would you manage database engines, HTTP clients, and other shared resources in a FastAPI application?
+26. Middleware, Exceptions & Logging
+1. What is ASGI middleware?
+2. How does middleware execution order work?
+3. What is the difference between middleware and dependencies?
+4. How do you implement custom exception handlers?
+5. What is the difference between HTTPException and a custom application exception?
+6. How do you implement request correlation IDs?
+7. How do you implement structured JSON logging?
+8. How would you measure request latency?
+9. How do you prevent sensitive data from appearing in logs?
+10. How would you design centralized error handling for a production FastAPI application?
+27. Authentication & Authorization
+1. What is the difference between authentication and authorization?
+2. How does OAuth 2.0 work?
+3. What is OpenID Connect?
+4. How do JWT access tokens work?
+5. How should a backend validate JWT signatures, claims, audience, and expiration?
+6. What is the difference between access tokens and refresh tokens?
+7. How do you implement role-based and permission-based authorization?
+8. How do FastAPI security dependencies work?
+9. How do you protect an API against common authentication and authorization vulnerabilities?
+10. How would you integrate FastAPI with a corporate identity provider such as Microsoft Entra ID?
+28. Async Endpoints, Background Tasks & Streaming
+1. What is the difference between def and async def endpoints in FastAPI?
+2. How does FastAPI execute synchronous endpoint functions?
+3. What happens when an async endpoint calls a blocking synchronous function?
+4. When should you use an async database driver?
+5. What is the purpose of FastAPI BackgroundTasks?
+6. What are the limitations of in-process background tasks?
+7. When should you use an external worker or message queue?
+8. How does StreamingResponse work?
+9. How do you handle cancellation and client disconnections during streaming?
+10. How would you implement a long-running CSV import without blocking API requests?
+29. API Testing & Production Deployment
+1. How do you test FastAPI endpoints using TestClient?
+2. How does HTTPX support asynchronous API testing?
+3. How do you override dependencies during tests?
+4. How do you test authentication and authorization?
+5. How do you test database transactions and rollback behavior?
+6. How do you mock external HTTP services?
+7. What is the difference between ASGI and WSGI?
+8. What are Uvicorn and Gunicorn, and how do worker processes affect deployment?
+9. How do you implement health checks, readiness checks, and graceful shutdown?
+10. How would you deploy and monitor a production FastAPI service using Docker?
+
+Phase 5 – SQLAlchemy & Databases
+30. SQLAlchemy 2.x Fundamentals
+1. What is SQLAlchemy, and how does it compare with Entity Framework Core?
+2. What is the difference between SQLAlchemy Core and ORM?
+3. What is the purpose of Engine?
+4. What is the difference between an Engine and a database connection?
+5. How does SQLAlchemy 2.x use the select() construct?
+6. What are Mapped and mapped_column()?
+7. How does SQLAlchemy convert Python expressions into SQL?
+8. What is the difference between Session.execute(), Session.scalars(), and Session.scalar()?
+9. How does SQLAlchemy handle parameterized queries?
+10. How would you structure SQLAlchemy configuration in a production Python application?
+31. ORM Models & Relationships
+1. How do you define ORM entities using SQLAlchemy 2.x?
+2. What is the difference between Mapped and mapped_column()?
+3. How do you configure primary keys and foreign keys?
+4. How do one-to-one, one-to-many, and many-to-many relationships work?
+5. What does relationship() do?
+6. What is the purpose of back_populates?
+7. How does cascade behavior work in SQLAlchemy?
+8. What is the difference between ORM cascading and database ON DELETE CASCADE?
+9. How do you configure composite primary keys and uniqueness constraints?
+10. How would you map a complex domain model without tightly coupling business logic to the ORM?
+32. Session Lifecycle & Identity Map
+1. What is a SQLAlchemy Session?
+2. How does Session compare with EF Core's DbContext?
+3. What is the identity map?
+4. What are the transient, pending, persistent, deleted, and detached states?
+5. What happens when you call session.add()?
+6. What is the difference between session.flush() and session.commit()?
+7. What does session.refresh() do?
+8. How do expiration and detachment affect ORM objects?
+9. Is a Session thread-safe, and can AsyncSession be shared between concurrent tasks?
+10. How should you manage Session lifetimes in a FastAPI application?
+33. Transactions, Flush, Commit & Rollback
+1. How are transactions managed in SQLAlchemy?
+2. What is SQLAlchemy's autobegin behavior?
+3. What happens during flush()?
+4. What is the difference between flush() and commit()?
+5. What happens when commit() fails?
+6. When should you call rollback()?
+7. How does session.begin() work as a context manager?
+8. What are nested transactions and SAVEPOINTs?
+9. How do you implement optimistic concurrency control?
+10. How would you ensure atomicity when updating multiple financial records?
+34. Lazy Loading, Eager Loading & N+1
+1. What is lazy loading in an ORM?
+2. What is eager loading?
+3. What is the N+1 query problem?
+4. How does joinedload() work?
+5. How does selectinload() work?
+6. What is the difference between joinedload() and selectinload()?
+7. What does contains_eager() do?
+8. How can lazy loading cause problems in asynchronous SQLAlchemy code?
+9. How would you detect unnecessary database queries?
+10. How would you optimize an API endpoint that loads thousands of entities and their relationships?
+35. AsyncSession & Connection Pooling
+1. What is AsyncSession?
+2. How does AsyncSession differ from a synchronous Session?
+3. What is create_async_engine()?
+4. What is async_sessionmaker()?
+5. Why shouldn't you share one AsyncSession across concurrent tasks?
+6. How does SQLAlchemy connection pooling work?
+7. What are pool size, maximum overflow, and pool timeout?
+8. What happens when the connection pool is exhausted?
+9. How do you safely dispose of an asynchronous SQLAlchemy Engine?
+10. How would you diagnose database connection exhaustion in a high-concurrency FastAPI application?
+36. Alembic Migrations
+1. What is Alembic?
+2. How does Alembic compare with EF Core Migrations?
+3. How does Alembic track database schema versions?
+4. What is the purpose of env.py?
+5. How does migration autogeneration work?
+6. Why should autogenerated migrations be reviewed?
+7. How do upgrade and downgrade migrations work?
+8. How do you handle migrations that require data transformation?
+9. How would you safely deploy a backward-compatible schema migration?
+10. What would you do if a production database migration failed halfway through deployment?
+37. PostgreSQL, SQL & Query Optimization
+1. What is the difference between a clustered index concept and PostgreSQL's ordinary index structures?
+2. How do B-tree, hash, GIN, and GiST indexes differ?
+3. What is a composite index, and how does column order affect its usefulness?
+4. What is the difference between INNER JOIN, LEFT JOIN, and FULL OUTER JOIN?
+5. How do database transaction isolation levels work?
+6. What are dirty reads, non-repeatable reads, and phantom reads?
+7. What is MVCC, and how does PostgreSQL use it?
+8. How do you investigate a slow query using EXPLAIN ANALYZE?
+9. What causes database deadlocks, and how should applications handle them?
+10. How would you optimize queries against a table containing tens of millions of financial transactions?
+
+Phase 6 – Testing & Python Tooling
+38. pytest Fundamentals
+1. What is pytest, and how does it differ from unittest?
+2. How does pytest discover and execute tests?
+3. What are pytest fixtures?
+4. What are the different fixture scopes?
+5. How does fixture dependency injection work?
+6. What is pytest.mark.parametrize?
+7. How do you test expected exceptions with pytest.raises()?
+8. How do you perform setup and cleanup using yield fixtures?
+9. How do you test asynchronous functions with pytest?
+10. How would you organize unit, integration, and end-to-end tests in a large Python application?
+39. Mocking, patch & AsyncMock
+1. What is the difference between mocking, stubbing, and faking?
+2. How does unittest.mock.Mock work?
+3. What is the difference between Mock and MagicMock?
+4. What does patch() do?
+5. Why should you patch an object where it is looked up rather than where it was originally defined?
+6. What are spec, spec_set, and autospec?
+7. What is AsyncMock, and when should you use it?
+8. How do you verify function calls and their arguments?
+9. How would you mock an external HTTP API?
+10. When can excessive mocking make tests brittle or misleading?
+40. Integration Testing, HTTPX & Testcontainers
+1. What is the difference between unit and integration testing?
+2. How does HTTPX support API integration testing?
+3. How do you test FastAPI without running an external HTTP server?
+4. What is Testcontainers, and when would you use it?
+5. How would you test SQLAlchemy against a real PostgreSQL instance?
+6. How do you isolate database changes between integration tests?
+7. How do you test message publishers and consumers?
+8. How do you test retries, timeouts, and transient failures?
+9. How do you prevent flaky integration tests?
+10. How would you design a CI pipeline that runs unit and integration tests efficiently?
+41. mypy, Pyright & Ruff
+1. What is static type checking in Python?
+2. What is the difference between mypy and Pyright?
+3. What does strict type checking mean?
+4. How do you handle missing type information from third-party libraries?
+5. What is the difference between a type error and a runtime error?
+6. What does Ruff do?
+7. What is the difference between linting, formatting, and type checking?
+8. How can Ruff replace or complement other Python quality tools?
+9. How do you configure quality tools in pyproject.toml?
+10. How would you introduce strict type checking into a large legacy Python codebase?
+42. uv, pip, venv & pyproject.toml
+1. What is a Python virtual environment?
+2. Why should each project use isolated dependencies?
+3. What is the difference between pip and uv?
+4. What is the purpose of pyproject.toml?
+5. What is the difference between project dependencies and development dependencies?
+6. What is a dependency lockfile?
+7. How do dependency version constraints work?
+8. How does editable installation work?
+9. What is the difference between a package, distribution, and Python module?
+10. How would you ensure reproducible Python environments across developer machines and CI/CD?
+43. Packaging, Dependencies & CI/CD
+1. How does Python package building work?
+2. What are wheels and source distributions?
+3. What is the role of a Python build backend?
+4. What is the difference between a library package and an application?
+5. How do you publish packages to a private Python package registry?
+6. How does semantic versioning apply to Python libraries?
+7. How do you manage breaking API changes in shared Python packages?
+8. How do you scan Python dependencies for known vulnerabilities?
+9. What should a production Python CI/CD pipeline contain?
+10. How would you build, test, version, and deploy a Python service using GitHub Actions or Jenkins?
+
+Phase 7 – Architecture & Production Engineering
+44. Clean Architecture & DDD
+1. How would you apply Clean Architecture to a Python backend?
+2. How do you separate domain, application, infrastructure, and API layers?
+3. What is the Dependency Inversion Principle?
+4. How do Protocols support dependency inversion?
+5. How do you implement repositories in Python?
+6. What is the difference between a domain entity and a SQLAlchemy ORM model?
+7. What are aggregates and aggregate roots?
+8. What is the Unit of Work pattern?
+9. How do you manage transactions across application services?
+10. When does Clean Architecture become unnecessary complexity?
+45. Design Patterns & Dependency Management
+1. Which design patterns are commonly used in Python backend systems?
+2. How would you implement the Strategy pattern using functions or classes?
+3. How does the Factory pattern work in Python?
+4. When should you prefer composition over inheritance?
+5. What is duck typing, and how does it influence design patterns?
+6. How do you implement dependency injection without a DI container?
+7. What is the difference between dependency injection and a service locator?
+8. How do you use Protocols to design replaceable components?
+9. How can decorators implement cross-cutting concerns?
+10. How would you refactor a tightly coupled Python service to make it easier to test?
+46. Messaging, RabbitMQ & Event-Driven Architecture
+1. What is event-driven architecture?
+2. What is the difference between a message, command, and event?
+3. How does RabbitMQ routing work?
+4. What is the difference between direct, topic, fanout, and headers exchanges?
+5. What is the difference between acknowledgment and publisher confirmation?
+6. How do you handle message retries and dead-letter queues?
+7. What are at-most-once and at-least-once delivery guarantees?
+8. How do you implement idempotent message consumers?
+9. What is the Transactional Outbox pattern?
+10. How would you build a reliable Python worker that processes financial events from RabbitMQ?
+47. Redis, Caching, Retries & Idempotency
+1. When should you introduce caching into a backend system?
+2. What is the difference between local and distributed caching?
+3. How do cache-aside and write-through caching work?
+4. What are cache invalidation and cache stampede?
+5. How do Redis expiration policies work?
+6. How do you implement retry with exponential backoff and jitter?
+7. What is the difference between a retry policy and a circuit breaker?
+8. What is idempotency, and why is it important for financial operations?
+9. How do you implement idempotency keys for HTTP requests?
+10. How would you ensure a transaction isn't processed twice when clients or workers retry requests?
+48. Logging, Metrics, Tracing & Observability
+1. What is the difference between logging, metrics, and tracing?
+2. What is structured logging?
+3. How do you implement correlation IDs?
+4. What is distributed tracing?
+5. What are trace IDs and span IDs?
+6. How does OpenTelemetry work in Python?
+7. What metrics would you collect for a FastAPI application?
+8. How would you monitor background workers and message queues?
+9. How do you avoid high-cardinality metrics and sensitive-data exposure?
+10. How would you investigate an intermittent production latency problem across multiple services?
+49. Docker, Linux & Deployment
+1. How do you containerize a Python FastAPI application?
+2. What should a production Python Dockerfile contain?
+3. What is the difference between a container and a process?
+4. How do you minimize container image size?
+5. What is the difference between Uvicorn and a multi-worker deployment?
+6. How do multiple worker processes affect in-memory state?
+7. How do environment variables and secrets management work?
+8. How do Linux signals affect graceful shutdown?
+9. How do you configure health checks and resource limits?
+10. How would you deploy and horizontally scale a Python API and background worker system?
+50. Performance, Profiling & Memory Optimization
+1. How do you identify whether an application is CPU-bound or I/O-bound?
+2. How does cProfile work?
+3. What is the difference between profiling and benchmarking?
+4. How do you measure memory allocations using tracemalloc?
+5. Why can process memory remain high after Python objects are released?
+6. How can generators improve memory efficiency?
+7. How do you optimize CPU-intensive Python operations?
+8. When would you use NumPy instead of Python loops?
+9. How do you identify blocking operations inside asyncio applications?
+10. How would you diagnose and optimize a Python service that becomes slow under high load?
+51. System Design for Python Services
+1. How would you design a Python service capable of handling thousands of concurrent requests?
+2. When would you choose a modular monolith over microservices?
+3. How would you design a large-scale CSV import system?
+4. How would you implement a scalable asynchronous job-processing system?
+5. How would you handle distributed transactions and partial failures?
+6. How would you design an API with rate limiting and backpressure?
+7. How would you guarantee reliable message processing?
+8. How would you design high availability and disaster recovery?
+9. How would you balance consistency, availability, latency, and cost?
+10. How would you migrate an existing .NET backend service to Python while minimizing operational risk?
+
+Phase 8 – FastMCP & AI Integration
+52. Model Context Protocol Fundamentals
+1. What is the Model Context Protocol (MCP)?
+2. What problem does MCP solve?
+3. What is the difference between an MCP host, client, and server?
+4. What are tools, resources, and prompts in MCP?
+5. How does MCP capability negotiation work?
+6. How are tools discovered and invoked?
+7. What is the difference between MCP and a traditional REST API?
+8. What is the relationship between MCP and LLM function calling?
+9. What are the main security considerations when exposing MCP tools?
+10. When would you choose MCP instead of building a custom tool integration?
+53. FastMCP – Tools, Resources & Prompts
+1. What is FastMCP, and what does it provide?
+2. How do you create an MCP server using FastMCP?
+3. How do you define tools in FastMCP?
+4. How does FastMCP derive tool schemas from Python types?
+5. How do you define and expose MCP resources?
+6. What are resource templates?
+7. How do you define reusable prompts?
+8. How do you handle validation and errors in MCP tools?
+9. How do you test FastMCP tools and server behavior?
+10. How would you expose a financial analytics service through FastMCP?
+54. MCP Transports, Security & Authentication
+1. What transport mechanisms does MCP support?
+2. What is the difference between stdio and Streamable HTTP transport?
+3. How does session management work in remote MCP servers?
+4. How do you authenticate MCP clients?
+5. How does OAuth-based authorization apply to MCP?
+6. How do you implement tool-level authorization?
+7. What is prompt injection, and how can it affect MCP integrations?
+8. How do you prevent an MCP tool from accessing unauthorized resources?
+9. How do you secure communication and credentials in remote MCP deployments?
+10. How would you design a production MCP server inside a corporate environment?
+55. LLM Integration, Tool Calling & Reliability
+1. What is the difference between traditional API integration and LLM tool calling?
+2. How does structured output work?
+3. How do you validate LLM-generated JSON or structured responses?
+4. What is the difference between a tool call and an agent workflow?
+5. How do you handle LLM timeouts, retries, and rate limits?
+6. How do you prevent duplicate side effects when an LLM retries a tool call?
+7. What are hallucinations, and how can grounding reduce them?
+8. How do you evaluate the quality and reliability of an LLM-powered application?
+9. How do you monitor token usage, latency, and cost?
+10. How would you design a secure Python AI assistant that retrieves financial information and invokes authorized tools?
