@@ -64,6 +64,8 @@ The schema is created and Python seed questions are inserted on startup; existin
 
 `.github/workflows/deploy.yml` deploys on pushes to `main` and can also be started manually. It builds the backend image and pushes it to GitHub Container Registry, then updates the existing Azure Container App in the `projects` resource group. It builds Angular and publishes the files to the existing Azure Static Web App. Static Web Apps hosts static files rather than a frontend container. Angular's output is `dist/interviewforge/browser`.
 
+The frontend deployment uses the Static Web App's GitHub authorization policy and passes a GitHub identity token to the deployment action.
+
 Set these repository **variables** under GitHub Settings → Secrets and variables → Actions → Variables:
 
 - `BACKEND_API_URL`: the backend's HTTPS origin, without `/api` (for example, `https://interview-forge-backend.grayisland-b17ef594.polandcentral.azurecontainerapps.io`).
