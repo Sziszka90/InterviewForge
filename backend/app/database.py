@@ -16,30 +16,17 @@ def make_database_engine():
     if provider == "azure_sql":
         server = os.environ["SQL_SERVER"]
         database = os.environ["SQL_DATABASE"]
-        auth_mode = os.getenv("SQL_AUTH_MODE", "sql_password").lower()
-        query = {
-            "driver": "ODBC Driver 18 for SQL Server",
-            "Encrypt": "yes",
-            "TrustServerCertificate": "no",
-        }
-        credentials = {}
-        if auth_mode == "sql_password":
-            credentials = {
-                "username": os.environ["SQL_USER"],
-                "password": os.environ["SQL_PASSWORD"],
-            }
-        elif auth_mode == "entra_interactive":
-            query["Authentication"] = "ActiveDirectoryInteractive"
-        else:
-            raise ValueError("SQL_AUTH_MODE must be 'sql_password' or 'entra_interactive'.")
-
         url = URL.create(
-            "mssql+pyodbc",
+            "mssql+mssqlpython",
+            username=os.getenv("SQL_USER", ""),
+            password=os.getenv("SQL_PASSWORD"),
             host=server,
             port=1433,
             database=database,
-            query=query,
-            **credentials,
+            query={
+                "authentication": os.getenv("SQL_AUTHENTICATION", "ActiveDirectoryMSI"),
+                "encrypt": "yes",
+            },
         )
         return create_engine(url, pool_pre_ping=True)
 

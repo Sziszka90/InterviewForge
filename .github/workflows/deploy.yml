@@ -1,0 +1,81 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push backend image
+        id: image
+        env:
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          image="ghcr.io/${REPOSITORY_OWNER,,}/interviewforge-backend:${IMAGE_TAG}"
+          docker build -t "$image" ./backend
+          docker push "$image"
+          echo "image=$image" >> "$GITHUB_OUTPUT"
+      - name: Sign in to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: 16623bcc-7579-47a6-90a3-af423ba88c10
+      - name: Update backend Container App
+        uses: azure/cli@v2
+        env:
+          CONTAINER_APP: ${{ vars.AZURE_CONTAINER_APP_NAME }}
+          IMAGE: ${{ steps.image.outputs.image }}
+        with:
+          inlineScript: |
+            test -n "$CONTAINER_APP" || { echo 'Set AZURE_CONTAINER_APP_NAME repository variable'; exit 1; }
+            az containerapp update --name "$CONTAINER_APP" --resource-group projects --image "$IMAGE"
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Configure backend URL
+        env:
+          API_URL: ${{ vars.BACKEND_API_URL }}
+        run: |
+          node -e 'const fs = require("fs"); const url = process.env.API_URL; if (!url || !/^https:\/\//.test(url)) throw new Error("Set BACKEND_API_URL to the HTTPS backend origin"); fs.writeFileSync("frontend/src/app/api-config.ts", `export const API_BASE_URL = ${JSON.stringify(url.replace(/\/+$/, ""))};\n`);'
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: upload
+          app_location: frontend/dist/interviewforge/browser
+          skip_app_build: true

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from './api-config';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, HostListener, OnInit, inject } from '@angular/core';
@@ -167,7 +168,7 @@ export class AppComponent implements OnInit {
   newQuestion = { section: '', question: '', answer: '' };
 
   ngOnInit(): void {
-    this.http.get<Technology[]>('/api/technologies').subscribe({
+    this.http.get<Technology[]>(`${API_BASE_URL}/api/technologies`).subscribe({
       next: (tracks) => { this.technologies = tracks; this.loadPhases(); },
       error: () => this.loadPhases(),
     });
@@ -183,7 +184,7 @@ export class AppComponent implements OnInit {
   }
 
   loadPhases(): void {
-    this.http.get<string[]>('/api/phases', { params: { technology: this.selectedTechnology } }).subscribe({
+    this.http.get<string[]>(`${API_BASE_URL}/api/phases`, { params: { technology: this.selectedTechnology } }).subscribe({
       next: (phases) => {
         this.phases = phases;
         if (this.selectedPhase && !phases.includes(this.selectedPhase)) this.selectedPhase = '';
@@ -205,14 +206,14 @@ export class AppComponent implements OnInit {
     this.flipped.clear();
     let sectionParams = new HttpParams().set('technology', this.selectedTechnology);
     if (this.selectedPhase) sectionParams = sectionParams.set('phase', this.selectedPhase);
-    this.http.get<string[]>('/api/sections', { params: sectionParams }).subscribe({
+    this.http.get<string[]>(`${API_BASE_URL}/api/sections`, { params: sectionParams }).subscribe({
       next: (sections) => this.sections = sections,
       error: () => this.sections = [],
     });
     let params = new HttpParams().set('technology', this.selectedTechnology).set('limit', '2000');
     if (this.selectedPhase) params = params.set('phase', this.selectedPhase);
     if (this.selectedSection) params = params.set('section', this.selectedSection);
-    this.http.get<Question[]>('/api/questions', { params }).subscribe({
+    this.http.get<Question[]>(`${API_BASE_URL}/api/questions`, { params }).subscribe({
       next: (items) => {
         this.questions = items;
         this.trackCounts[this.selectedTechnology] = items.length;
@@ -261,7 +262,7 @@ export class AppComponent implements OnInit {
   createQuestion(): void {
     this.saving = true;
     this.formMessage = '';
-    this.http.post<Question>('/api/questions', {
+    this.http.post<Question>(`${API_BASE_URL}/api/questions`, {
       technology: this.selectedTechnology,
       phase: 'Custom questions',
       ...this.newQuestion,
