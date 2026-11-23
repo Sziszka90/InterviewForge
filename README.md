@@ -66,12 +66,11 @@ The schema is created and Python seed questions are inserted on startup; existin
 
 Set these repository **variables** under GitHub Settings → Secrets and variables → Actions → Variables:
 
-- `AZURE_CONTAINER_APP_NAME`: the name of the existing backend Container App.
 - `BACKEND_API_URL`: the backend's HTTPS origin, without `/api` (for example, `https://interview-forge-backend.grayisland-b17ef594.polandcentral.azurecontainerapps.io`).
 
 Set these repository **secrets** under Actions → Secrets:
 
-- `AZURE_STATIC_WEB_APPS_API_TOKEN`: the deployment token from the Static Web App's **Manage deployment token** page.
+- `AZURE_STATIC_WEB_APPS_API_TOKEN_BRAVE_SAND_02D0B4103`: the deployment token from the Static Web App's **Manage deployment token** page.
 - `INTERVIEWFORGEBACKEND_AZURE_CLIENT_ID`, `INTERVIEWFORGEBACKEND_AZURE_TENANT_ID`, and `INTERVIEWFORGEBACKEND_AZURE_SUBSCRIPTION_ID`: the client, tenant, and subscription IDs for an Azure identity configured for GitHub Actions OpenID Connect. Configure a federated credential for this repository's `main` branch and grant the identity permission to update the backend Container App, such as Contributor scoped to that app.
 
 The Container App must be able to pull `ghcr.io/<github-owner>/interviewforge-backend`. Make the package public or configure the app's GHCR registry credentials before deployment. Configure the app's ingress target port as `8000`, and set its database environment variables as described above. Set `CORS_ORIGINS` on the backend to the Static Web App's HTTPS origin (no trailing slash); use a comma-separated list to allow additional origins.
