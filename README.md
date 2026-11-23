@@ -62,7 +62,7 @@ The schema is created and Python seed questions are inserted on startup; existin
 
 ## GitHub deployment
 
-`.github/workflows/deploy.yml` deploys on pushes to `main` and can also be started manually. It builds the backend image and pushes it to GitHub Container Registry, then updates the existing Azure Container App in the `projects` resource group. It builds Angular and publishes the files to the existing Azure Static Web App. Static Web Apps hosts static files rather than a frontend container. Angular's output is `dist/interviewforge/browser`.
+`.github/workflows/azure-static-web-apps-brave-sand-02d0b4103.yml` deploys on pushes to `main` and can also be started manually. It builds the backend image and pushes it to GitHub Container Registry, then updates the existing Azure Container App in the `projects` resource group. It builds Angular and publishes the files to the existing Azure Static Web App. Static Web Apps hosts static files rather than a frontend container. Angular's output is `dist/interviewforge/browser`.
 
 The frontend deployment uses the Static Web App's GitHub authorization policy and passes a GitHub identity token to the deployment action.
 
