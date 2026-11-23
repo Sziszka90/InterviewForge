@@ -40,9 +40,9 @@ jobs:
       - name: Sign in to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: 16623bcc-7579-47a6-90a3-af423ba88c10
+          client-id: ${{ secrets.INTERVIEWFORGEBACKEND_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.INTERVIEWFORGEBACKEND_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.INTERVIEWFORGEBACKEND_AZURE_SUBSCRIPTION_ID }}
       - name: Update backend Container App
         uses: azure/cli@v2
         env:
